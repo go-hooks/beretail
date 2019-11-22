@@ -2,11 +2,13 @@
 <html lang="en">
 <!-- Head -->
 <?php
-	include('includes/head.php');
+  include('includes/head.php');
+  require('db.php');
+  include("auth.php");
 ?>
 
 <body>
-  <!-- Navigation -->
+  <!-- Main Menu -->
   <?php
 	include('includes/main-menu.php');
 ?>
@@ -14,11 +16,13 @@
 <div class="container">
 	<br>  <p class="text-center">Dudas o preguntas enviar un corrEo a  <a href="ventas@lucianna.com.mx"> ventas@lucianna.com.mx</a></p>
 <hr>
-  <!-- Page Content -->
+  <!-- Contenido -->
   <div class="container">
 
     <div class="row">
     <div class="col-lg-3">
+    <h5 class="my-3">Bienvenid@ <?php echo $_SESSION['username']; ?>!</h5>
+        <a href="logout.php">Cerrar Sesión</a>
         <h3 class="my-3">LUCIANNA JEWELRY</h3>
     </div>
     <!-- /.col-lg-3 -->
@@ -138,7 +142,7 @@
   <!-- Footer -->
 
 
-  <!-- Bootstrap core JavaScript -->
+  <!-- JavaScript -->
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 

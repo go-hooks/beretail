@@ -39,12 +39,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
       
-    <title>GRUPO VALFLO</title>
+    <title>BeRetail</title>
       
     <!-- Bootstrap core CSS -->
     <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-      
+   
     <!-- Custom styles for this template -->
-    <link href="css/shop-homepage.css" rel="stylesheet">
+    <link href="css/shop-homepage.css" type="text/css" rel="stylesheet">
       
 </head>
