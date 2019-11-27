@@ -13,13 +13,11 @@
   <div class="container">
     <div class="row">
     <div class="col-lg-3">
-        <h5 class="my-3">Bienvenid@ <?php echo $_SESSION['username']; ?>!</h5>
-        <a href="logout.php">Cerrar Sesión</a>
         <h3 class="my-3">Nuestras Marcas</h3>
         <div class="list-group">
-          <a href="vanila.php" class="list-group-item">Vanila</a>
-          <a href="lucianna.php" class="list-group-item">Lucianna</a>
-          <a href="thebridalstudio.php" class="list-group-item">The Bridal Studio</a>
+          <a href="vanila.php" class="list-group-item">VANILA</a>
+          <a href="lucianna.php" class="list-group-item">LUCIANNA</a>
+          <a href="thebridalstudio.php" class="list-group-item">THE BRIDAL STUDIO</a>
         </div>
 
       </div>
@@ -35,7 +33,7 @@
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img class="d-block img-fluid" src="img/DSC00783.JPG" alt="First slide">
+              <img class="d-block img-fluid" src="img/bridal.jpg" alt="First slide">
             </div>
             <div class="carousel-item">
               <img class="d-block img-fluid" src="img/DSC00784.JPG" alt="Second slide">

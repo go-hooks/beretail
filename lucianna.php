@@ -21,8 +21,6 @@
 
     <div class="row">
     <div class="col-lg-3">
-    <h5 class="my-3">Bienvenid@ <?php echo $_SESSION['username']; ?>!</h5>
-        <a href="logout.php">Cerrar Sesión</a>
         <h3 class="my-3">LUCIANNA JEWELRY</h3>
     </div>
     <!-- /.col-lg-3 -->

@@ -1,13 +1,16 @@
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-<body>
+<link href="/includes/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="/includes/bootstrap/js/bootstrap.min.js"></script>
+<script src="/includes/jquery/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<!------ Include the above in your HEAD tag ---------->
+
 <?php
 include('includes/head-login.php');
 require('db.php');
-// Si se realiza el correcto envío de valores, insertarlos en la tabla.
 if (isset($_REQUEST['username'])){
-        // Remover backslashes
+        // Remove backslashes
  $name = stripslashes($_REQUEST['name']);
- // Hacer escape a caracteres especiales
+ // Special Characters scape
  $name = mysqli_real_escape_string($con,$name); 
  $lastname = stripslashes($_REQUEST['lastname']);
  $lastname = mysqli_real_escape_string($con,$lastname); 
@@ -21,108 +24,95 @@ if (isset($_REQUEST['username'])){
  $company = mysqli_real_escape_string($con,$company);
  $department = stripslashes($_REQUEST['department']);
  $department = mysqli_real_escape_string($con,$department);
+ $title = stripslashes($_REQUEST['title']);
+ $title = mysqli_real_escape_string($con,$title);
  $password = stripslashes($_REQUEST['password']);
  $password = mysqli_real_escape_string($con,$password);
- $trn_date = date("Y-m-d H:i:s");
- $query = "INSERT into `users` (username, password, email, name, lastname, phone, company, department, trn_date)
- VALUES ('$username', '".md5($password)."', '$email', '$name', '$lastname', '$phone', '$company', '$department', '$trn_date')";
+ $txndate = date("Y-m-d H:i:s");
+ $isactive = 1;
+ $query = "INSERT into `tblretailerbuyers` (UserName, Password, Email, Name, LastName, Phone, Company, Department, Title, TxnDate, IsActive)
+ VALUES ('$username', '".md5($password)."', '$email', '$name', '$lastname', '$phone', '$company', '$department', '$title', '$txndate', '$isactive')";
         $result = mysqli_query($con,$query);
         if($result){
-            echo "";
+            header("Location: login.php");
         }
     }else{
   
 ?>
 
-<div class="container">
-<div class="card bg-light">
-<article class="card-body mx-auto" style="max-width: 400px;">
-	<h4 class="card-title mt-3 text-center">Bienvenido a GRUPO VALFLO</h4>
-        <h4 class="card-title mt-3 text-center">Crear Cuenta</h4>
-	<p class="text-center">Llena el siguiente formulario</p>
+</html>
+    <head>
+        <title>Registro</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    </head>
 
-<form name="registration" action="" method="post">
-        <div class="form-group input-group">
-		<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-		 </div>
-        <input name="name" class="form-control" placeholder="Nombre" type="text" >
-    </div> 
-    <div class="form-group input-group">
-		<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-		 </div>
-        <input name="lastname" class="form-control" placeholder="Apellido" type="text" >
-    </div> 
-	<div class="form-group input-group">
-		<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-		 </div>
-        <input name="username" class="form-control" placeholder="Usuario" type="text" required>
-    </div> <!-- form-group -->
-    <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-		 </div>
-        <input name="email" class="form-control" placeholder="Correo" type="email" required>
-    </div> <!-- form-group -->
-    <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-		</div>
-		
-    	<input name="phone" class="form-control" placeholder="Teléfono" type="text" >
-    </div> <!-- form-group -->
-    <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-		</div>
-		<select name="company" class="form-control" type="text" >
-			<option selected="">Compañía</option>
-			<option>Cimaco</option>
-			<option>Liverpool</option>
-                        <option>Sacks Mexico</option>
-                        <option>Sears</option>
-		</select>
-        </div>
-    <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
-		</div>
-		<select name="department" class="form-control" type="text" >
-			<option selected="">Departamento</option>
-			<option>Compras</option>
-			<option>Marketing</option>
-		</select>
-        </div> <!-- form-group end -->
-    <div class="form-group input-group">
-    	<div class="input-group-prepend">
-		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-		</div>
-        <input name="password" class="form-control" placeholder="Contraseña" type="password" required>
-    </div> <!-- form-group -->
-    <!-- form-group -->                                      
-    <div class="form-group">
-    <button type="submit" class="btn btn-primary btn-block">Crear Cuenta</button>
-    </div> <!-- form-group// -->      
-    <p class="text-center">Ya tienes cuenta? <a href="login.php">Ingresar</a> </p>                                                                 
-</form>
-</article>
-</div> <!-- card.// -->
-
-</div> 
-<!--container end.//-->
-</article>
-<!--===============================================================================================-->
-<script src="node_modules\jquery\dist\jquery.min.js"></script>
-	<script src="js\animsition.min.js"></script>
-	<script src="node_modules\popper.js\dist\popper.js"></script>
-	<script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
-	<script src="js\select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="js\moment.min.js"></script>
-	<script src="js\daterangepicker.js"></script>
-	<script src="js\countdowntime.js"></script>
-	<script src="js/main.js"></script>
-<?php } ?>
-<body>
+    <body>
+    <div class="container register">
+                    <div class="row">
+                        <div class="col-md-3 register-left">
+                            <img src="img/IMG_2281.JPG" alt=""/>
+                            <h3>Bienvenido a GRUPO VALFLO</h3>
+                            <p>A continuación ingresa tus datos para crear tu cuenta y accesar a nuestro portal</p>         
+                        </div>
+                        <div class="col-md-9 register-right">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <h3 class="register-heading">Registro de Compradores</h3>
+                                    <!-- <div class="row register-form">-->
+                                        <form name="registration" class="row register-form" action="" method="post">  
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" name="name" class="form-control" placeholder="Nombre(s)" value="" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="lastname" class="form-control" placeholder="Apellido" value="" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="username" class="form-control" placeholder="Usuario" value="" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="email" class="form-control" placeholder="Email" value="" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" minlength="10" maxlength="10" name="Phone" class="form-control" placeholder="Teléfono" value="" />
+                                            </div>
+                            
+                                        </div>
+                                        <div class="col-md-6">
+                                        <div class="form-group">
+                                                <select name="company" class="form-control">
+                                                    <option class="hidden"  selected disabled>Compañía</option>
+                                                    <option>CIMACO</option>
+                                                    <option>LIVERPOOL</option>
+                                                    <option>SEARS</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <select name="department" class="form-control">
+                                                    <option class="hidden"  selected disabled>Departamento</option>
+                                                    <option>Compras</option>
+                                                    <option>Marketing</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="title" class="form-control" placeholder="Puesto" value="" />
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <input type="password" name="password" class="form-control" placeholder="Contraseña" value="" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control"  placeholder="Confirmar Contraseña" value="" />
+                                            </div>
+                                            <input name="submit" type="submit" class="btnRegister"  value="Registrar"/>
+                                        </div>
+                                        </form>
+                                <!--  </div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </body>
+</html>

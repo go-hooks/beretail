@@ -1,7 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-    <!-- Head -->
-<title>Ingresar</title>
+<link href="/includes/bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="/includes/bootstrap/js/bootstrap.min.js"></script>
+<script src="/includes/jquery/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
 <?php
 require('db.php');
 session_start();
@@ -12,9 +13,9 @@ if (isset($_POST['username'])){
  $username = mysqli_real_escape_string($con,$username);
  $password = stripslashes($_REQUEST['password']);
  $password = mysqli_real_escape_string($con,$password);
- // Verifica si el usuario existe en la base datos
-        $query = "SELECT * FROM `users` WHERE username='$username'
-and password='".md5($password)."'";
+ // Verify if user exists in DataBase
+        $query = "SELECT * FROM `tblretailerbuyers` WHERE UserName='$username'
+and Password='".md5($password)."'";
  $result = mysqli_query($con,$query) or die(mysql_error());
  $rows = mysqli_num_rows($result);
         if($rows==1){
@@ -24,62 +25,57 @@ and password='".md5($password)."'";
          }else{
  echo ""; // Agregar tarea para crear un modal que diga que la password o el username es incorrecto
  }
-    }else{
+    }
 ?>
 
-<body>
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-                    <form class="login100-form validate-form" method="post" action="" name="login">
-                        <span class="login100-form-title p-b-34">
-                            INICIO
-                        </span>
-                        
-                        <div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Ingresar Usuario">
-                            <input class="input100" type="text" name="username" placeholder="Usuario" required >
-                            <span class="focus-input100"></span>
-                        </div>
-                        <div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Ingresar Contraseña">
-                            <input class="input100" type="password" name="password" placeholder="Contraseña" required>
-                            <span class="focus-input100"></span>
-                        </div>
-                        
-                        <div class="container-login100-form-btn">
-                            <input class="login100-form-btn" id="login_submit" name="submit" type="submit" value="Ingresar"></input>
-                        </div>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ingresar</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/loginstyles.css">
+</head>
 
-                        <div class="w-full text-center p-t-27 p-b-239">
-                            <span class="txt1">
-                                Olvidó su
-                            </span>
-
-                            <a href="#" class="txt2">
-                                Usuario / Contraseña?
-                            </a>
-                        </div>
-                        <div class="w-full text-center">
-                            <a href="registration.php" class="txt3">
-                                Registrarse
-                            </a>
-                        </div>
-                    </form>
-				<div class="login100-more" style="background-image: url('img/bridal.jpg');"></div>
+	<body>
+		<div class="container">
+			<div class="d-flex justify-content-center h-100">
+				<div class="card">
+					<div class="card-header">
+						<h3>GRUPO VALFLO</h3>
+					</div>
+					<div class="card-body">
+						<form method="post" action="" name="login">
+							<div class="input-group form-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user"></i></span>
+								</div>
+								<input type="text" class="form-control" name="username" placeholder="usuario">
+								
+							</div>
+							<div class="input-group form-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-key"></i></span>
+								</div>
+								<input type="password" class="form-control" name="password" placeholder="contraseña">
+							</div>
+							<div class="row align-items-center remember">
+								<input type="checkbox">Recordarme
+							</div>
+							<div class="form-group">
+								<input name="submit" type="submit" value="Ingresar" class="btn float-right login_btn">
+							</div>
+						</form>
+					</div>
+					<div class="card-footer">
+						<div class="d-flex justify-content-center links">
+							<a class="link" href="registration.php">REGISTRO</a>
+						</div>
+						<div class="d-flex justify-content-center">
+							<a class="link" href="#">Recuperar Contraseña</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	
-<!--===============================================================================================-->
-	<script src="node_modules\jquery\dist\jquery.min.js"></script>
-	<script src="js\animsition.min.js"></script>
-	<script src="node_modules\popper.js\dist\popper.js"></script>
-	<script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
-	<script src="js\select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="js\moment.min.js"></script>
-	<script src="js\daterangepicker.js"></script>
-	<script src="js\countdowntime.js"></script>
-	<script src="js/main.js"></script>
-<?php } ?>
-</body>
+	</body>
 </html>
